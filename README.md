@@ -20,6 +20,12 @@ We keep a list of TODOs to manage our project up to deadlines' demands.
 - [ ] Integrate messaging functionality based on in-class assignment.
 - [ ] Configure the landing page to create better UX
 - [ ] Configure sessions
+- [ ] Redesign landing page
+- [ ] Update form with javascript listener
+- [ ] Upload pictures
+- [ ] Delete/update for posts
+- [ ] Polish visuals in general 
+
 
 ## Progress log
 #### Week of 10/31/2021
