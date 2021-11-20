@@ -1,8 +1,8 @@
 <?php
 $host="cray.cc.gettysburg.edu";
 $dbase="f21_2";
-$user = $_SESSION['uid'];
-$pass = $_SESSION['pass'];
+$user = "doandu01";
+$pass = "doandu01";
 
 try {
     $db = new PDO("mysql:host=$host;dbname=$dbase", $user, $pass);
