@@ -1,0 +1,37 @@
+body{
+    margin-top: 20px;
+    background-color: lightskyblue;
+}
+
+.main{
+    padding: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.topbar a{
+    float: right;
+    color: orange;
+    text-align: center;
+    padding: 20px 26px;
+    text-decoration: none;
+    font-size: 26px;
+}
+
+.sidebar{
+    background-color: #333;
+    color: white;
+    height: 100px;
+}
+
+.sidebar a{
+    margin-left: 10px;
+    display:block;
+    color: orange;
+    padding-bottom: 10px;
+    font-size: 30px;
+    text-decoration: none;
+}
+
+.content{
+    background-color: orange;
+}
