@@ -32,7 +32,7 @@ include_once("db_connect.php");
         
         <div class="col-md-1 spaceCol">
         </div>
-        
+
         <?php
             if($_SESSION['uid'] == null) {
                 print "<div class='col-md-4 name'><a href='login.php'>Log In </a></div>";
@@ -44,7 +44,7 @@ include_once("db_connect.php");
                         "<img id='profile' src='res/bg.png' alt='No picture' width='55' height='55'>" . 
                         "</div>";
                 print "<div class='col-md-2 name'>" . 
-                        "<a href=#>" . getName($db, $name) . "</a>" . //TODO make page user.php?id=$name
+                        "<a href=./profile.php>" . getName($db, $name) . "</a>" .
                         "</div>";  
                 print "<div class='col-md-1 settings'> Settings </div>";
             }
