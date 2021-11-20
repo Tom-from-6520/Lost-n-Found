@@ -1,12 +1,21 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
 <?php
 session_start();
 include("bootstrap.php");
-include("proj_util.php");
+include("landing_util.php");
 include_once("db_connect.php");
+?>
+<h3> Edit your post </h3>
 
-print "<h3> Edit your post </h3>";
+</head>
 
-print "<form action='updateForm.php' method='POST'>";
+<body>
+
+<?php
 
  $str = "SELECT * FROM items ORDER BY org_date DESC;";
     $res = $db->query($str);
@@ -40,73 +49,77 @@ print "<form action='updateForm.php' method='POST'>";
            if($res_row == false){
            	print "<h3> Error with query </h3>";
            }
+           
+?>   
+        
+<form action='updateForm.php' method='POST'>
+<table align="center" border='1' cellspacing='0' cellpadding='4' 
+       style="border: solid 1px !important">
 
-print "<table align='center' border='1' cellspacing='0' cellpadding='4' 
-       style='border: solid 1px !important'>";
-
-print "<tr>
+<tr>
 <td>Name of the item</td>
-<td><input type='text' name='UtfName' placeholder=$itemName></td>
-</tr>";
+<td><input type='text' name='UtfName' placeholder=<?php print $itemName; ?>></td>
+</tr>
 
-print "<tr>
+<tr>
 <td>Item Type</td>
-<td><input type='text' name='Uitemtype' placeholder=$itemType> <p style='font-size:10; margin-top:5px;'> *Example: Phone, Medicine, Driver License. </p></td>
+<td><input type='text' name='Uitemtype' placeholder=<?php print $itemType; ?>> <p style='font-size:10; margin-top:5px;'> *Example: Phone, Medicine, Driver License. </p></td>
 </tr>";
 
-print "<tr>
+<tr>
 <td>Category</td>
 <td>
 <select name='Uddl'>
-<option value='UddlC1'>$category</option>
+<option value='UddlC1'><?php print $category; ?></option>
 <option value='UddlC2'>Electronics</option>
 <option value='UddlC3'>Clothing</option>
 <option value='UddlC4'>School Supplies</option>
 <option value='UddlC5'>Personal</option>
 <option value='UddlC6'>Miscellaneous</option>
 </select>
-<p style='font-size:10; margin-top:5px;'> *Only choose Personal for ids, keys, licenses and passports. </p>
+<p style="font-size:10px; margin-top:5px;"> *Only choose Personal for ids, keys, licenses and passports. </p>
 </td>
-</tr>";
+</tr>
 
-print "<tr>
+<tr>
 <td>Found Location</td>
-<td><input type='text' name='UfoundLoc' placeholder= $found_loc></td>
-</tr>";
+<td><input type='text' name='UfoundLoc' placeholder="<?php print $found_loc; ?>"></td>
+</tr>
 
-print"<tr>
+<tr>
 <td>Current Location</td>
-<td><input type='text' name='UcurLoc' placeholder=$cur_loc></td>
-</tr>";
+<td><input type='text' name='UcurLoc' placeholder=<?php print $cur_loc; ?>></td>
+</tr>
 
 //<!---------ELECTRONIC SPECIFIC SECTION----------------------->
 //<!-- row 3: electronic specific brand-->
-print "<tr>
+<tr>
 <td>Brand</td>
-<td><input type='text' name='UtfBrand' placeholder='$brand'></td>
+<td><input type='text' name='UtfBrand' placeholder="<?php print $brand; ?>"></td>
 </tr>
 <tr>
 <td>Color</td>
-<td><input type='text' name='UtfColor' placeholder='$color'></td>
-</tr>";
+<td><input type='text' name='UtfColor' placeholder="<?php print $color; ?>"></td>
+</tr>
 
 //<!--------------------------------------------------->
 
 
-print "<tr>
+<tr>
 <td>Description of the item</td>
-<td><textarea name='UtArea' value='' placeholder='$detail' rows='5' cols='60'></textarea></td>
-</tr>";
+<td><textarea name='UtArea' value='' placeholder="<?php print $detail; ?>" rows='5' cols='60'></textarea></td>
+</tr>
 
-print "</table>";
+</table>
 
-print "</br>
+</br>
 <div class='row'>
 <div class='col-md-4'></div>
 <div class='col-md-2'>
-<input type='submit' value='Submit Updated Form'/>
+<input type='submit' value="Submit Updated Form"/>
 </div>
 </div>
-</form>";
+</form>
 
-?>
+</body>
+</html>
