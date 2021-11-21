@@ -30,9 +30,7 @@ function showFeedPost($db){
    	     print "<div class='col-md-3 post-name'><a href='#'> $name </a></div>";
    	     print "<div class='col-md-5 post'></div>";
    	     print "<div class='col-md-2'>";
-         print "<form action='postEdit.php'>";
-         print "<input type='submit' value='Edit'/>";
-         print "</form>";
+		 print "<a href=./postEdit.php?id=$item_id>Edit</a>";
          print "</div>";
    	     print "</div>";
    	     

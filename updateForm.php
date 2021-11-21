@@ -1,29 +1,20 @@
 <?php
-
 include_once("db_connect.php");
 
-print "</h3> $_POST </h3>";
-
 $category=$_POST['Uddl'];
-$cur_loc=$_POST['UcurLoc'];
+$curr_loc=$_POST['UcurLoc'];
 $org_loc=$_POST['UfoundLoc'];
 $description = $_POST['UtArea'];
 $date = date('Y-m-d h:i:s', time());
 
-print $category;
-		
-$str = "UPDATE items SET category='$category' WHERE id=$item_id";
+$item_id = $_GET['id'];	
+$str = "UPDATE items SET category='$category', org_loc='$org_loc', curr_loc='$curr_loc' WHERE id=$item_id";
 $res = $db->query($str);
 
-if($res != false){
-	print "Updated!";
+if($res){
+    header('Location: ./landing.php');
 }
-if($res == false){
-	print "Error updating, please try again";
+else {
+    print "Error updating, please try again";
 }
-
-
-
-
-
 ?>

@@ -1,5 +1,4 @@
 <!DOCTYPE HTML>
-
 <html>
 
 <head>
@@ -10,31 +9,26 @@ include("landing_util.php");
 include_once("db_connect.php");
 ?>
 <h3> Edit your post </h3>
-
 </head>
 
 <body>
-
 <?php
-
- $str = "SELECT * FROM items ORDER BY org_date DESC;";
+$item_id = $_GET['id'];
+ $str = "SELECT * FROM items WHERE id=$item_id;";
     $res = $db->query($str);
      
     if($res != false){
             $row = $res->fetch();
-            $item_id = $row['id'];
             $poster_id = $row['poster_id'];
             $category = $row['category'];
-            $name = getName($db, $poster_id); 
             $found_loc = $row['org_loc'];
             $cur_loc = $row['curr_loc'];
         }
-    
-    if($res == false){
+    else {
     	print "<h3> Error fetching query </h3>";
     }
 
- $str2 = "SELECT * FROM (SELECT * FROM items WHERE id=$item_id) AS I JOIN desc_$category ON id=$item_id;";
+ $str2 = "SELECT * FROM items JOIN desc_$category ON id=item_id WHERE id=$item_id;";
             $res_row = $db->query($str2);
             
             if($res_row != false){
@@ -51,8 +45,7 @@ include_once("db_connect.php");
            }
            
 ?>   
-        
-<form action='updateForm.php' method='POST'>
+<form action='updateForm.php?id=<?php print $item_id; ?>' method='POST'>
 <table align="center" border='1' cellspacing='0' cellpadding='4' 
        style="border: solid 1px !important">
 
@@ -70,12 +63,12 @@ include_once("db_connect.php");
 <td>Category</td>
 <td>
 <select name='Uddl'>
-<option value='UddlC1'><?php print $category; ?></option>
-<option value='UddlC2'>Electronics</option>
-<option value='UddlC3'>Clothing</option>
-<option value='UddlC4'>School Supplies</option>
-<option value='UddlC5'>Personal</option>
-<option value='UddlC6'>Miscellaneous</option>
+<option value='<?php print $category; ?>'><?php print $category; ?></option>
+<option value='electronics'>Electronics</option>
+<option value='clothing'>Clothing</option>
+<option value='school_supp'>School Supplies</option>
+<option value='personal'>Personal</option>
+<option value='misc'>Miscellaneous</option>
 </select>
 <p style="font-size:10px; margin-top:5px;"> *Only choose Personal for ids, keys, licenses and passports. </p>
 </td>
