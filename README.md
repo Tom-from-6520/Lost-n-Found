@@ -16,11 +16,11 @@ We utilize Github's hosting ability to cooperate better for our project
 
 ## Current TODO
 We keep a list of TODOs to manage our project up to deadlines' demands.
-#### Week of 11/16/2021
+#### Week of 11/21/2021
 - [ ] Integrate messaging functionality based on in-class assignment.
 - [ ] Configure the landing page to create better UX
 - [ ] Redesign landing page
-- [ ] Update form with javascript listener
+- [x] Update form with javascript listener
 - [ ] Upload pictures
 - [ ] Delete/update for posts
 - [ ] Polish visuals in general 

@@ -3,12 +3,15 @@ session_start();
 include_once('db_connect.php');
 
 $name = $_POST['tfName']; 
-$category = $_POST['ddl']; 
+$category = $_POST['rbCat']; 
 $org_loc = $_POST['foundLoc'];
 $curr_loc = $_POST['currLoc'];
+
 $item_type = $_POST['tfType'];
 $brand = $_POST['tfBrand'];
 $color = $_POST['tfColor'];
+$size = $_POST['tfSize'];
+
 $detail = $_POST['taDetail']; 
 $date = date('Y-m-d h:i:s', time());
 $poster_id = $_SESSION['uid'];
@@ -25,11 +28,23 @@ $res = $db->query($str);
 $item = $res->fetch();
 $item_id = $item['id'];
 
-$str = "INSERT INTO desc_electronics VALUE($item_id, 'F', '$item_type', '$name', '$brand', '$color', '$detail');";
-if($db->query($str) == FALSE){
-    print "Error adding description";
-} 
-else {
-    header('Location: ./landing.php');
+$str = "";
+if ($category == 'electronics') {
+    $str = "INSERT INTO desc_electronics VALUE($item_id, 'F', '$item_type', '$name', '$brand', '$color', '$detail');";
 }
+else if ($category == 'clothing') {
+    $str = "INSERT INTO desc_clothing VALUE($item_id, 'F', '$item_type', '$brand', '$color', '$size', '$detail');";
+}
+else if ($category == 'school_supp') {
+    $str = "INSERT INTO desc_school_supp VALUE($item_id, 'F', '$item_type', '$name', '$color', '$detail');";
+}
+else if ($category == 'personal') {
+    $str = "INSERT INTO desc_personal VALUE($item_id, 'F', '$item_type', '$detail');";
+}
+else if ($category == 'misc') {
+    $str = "INSERT INTO desc_misc VALUE($item_id, 'F', '$item_type', '$name', '$detail');";
+}
+if($db->query($str)){
+    header('Location: ./landing.php');
+} 
 ?>
