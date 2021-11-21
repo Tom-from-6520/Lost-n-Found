@@ -1,18 +1,18 @@
-<HTML>
-<HEAD>
+<html>
+<head>
 
 <?php
-	include("bootstrap.php");
+    include("bootstrap.php");
 ?>
 <TITLE> Found Form </TITLE>
 
 <style>
-	.space-row{
-		height:150px;
-	}
+.space-row{
+	height:150px;
+}
 </style>
 
-</HEAD>
+</head>
 <body bgColor="#FFFFFF">
 
 <div class="space-row">
@@ -24,7 +24,7 @@
 <!-- when submitted, form1.php is executed to 
      handle the form inputs and return the results to user -->
 
-<form name="foundFm" method="POST" action="fmProcess.php">
+<form name="foundFm" method="POST" action="addPostProcess.php">
 
 <table align="center" border="1" cellspacing="0" cellpadding="4" 
        style="border: solid 1px !important;">
@@ -38,7 +38,7 @@
 
 <tr>
 <td>Item Type</td>
-<td><input type="text" name="itemtype" placeholder="enter text"/> <p style="font-size:10; margin-top:5px;"> *Example: Phone, Medicine, Driver License. </p></td>
+<td><input type="text" name="tfType" placeholder="enter text"/> <p style="font-size:10; margin-top:5px;"> *Example: Phone, Medicine, Driver License. </p></td>
 </tr>
 
 <!-- row 2: drop down category -->
@@ -46,11 +46,11 @@
 <td>Category</td>
 <td>
 <select name="ddl">
-<option value="ddlC1">Electronics</option>
-<option value="ddlC2">Clothing</option>
-<option value="ddlC3">School Supplies</option>
-<option value="ddlC4">Personal</option>
-<option value="ddlC4">Miscellaneous</option>
+<option value='electronics'>Electronics</option>
+<option value='clothing'>Clothing</option>
+<option value='school_supp'>School Supplies</option>
+<option value='personal'>Personal</option>
+<option value='misc'>Miscellaneous</option>
 </select>
 <p style="font-size:10; margin-top:5px;"> *Only choose Personal for ids, keys, licenses and passports. </p>
 </td>
@@ -63,7 +63,7 @@
 
 <tr>
 <td>Current Location</td>
-<td><input type="text" name="curLoc" placeholder="Where is it now?"/></td>
+<td><input type="text" name="currLoc" placeholder="Where is it now?"/></td>
 </tr>
 
 <!---------ELECTRONIC SPECIFIC SECTION----------------------->
@@ -83,7 +83,7 @@
 <!-- row 3: description-->
 <tr>
 <td>Description of the item</td>
-<td><textarea name="tArea" value="" rows="5" cols="60"></textarea></td>
+<td><textarea name="taDetail" value="" rows="5" cols="60"></textarea></td>
 </tr>
 
 
@@ -110,4 +110,4 @@
 </form>
 
 </body>
-</HTML>
+</html>
