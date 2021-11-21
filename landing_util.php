@@ -29,9 +29,11 @@ function showFeedPost($db){
    	     print "<div class='col-md-.5'><img id= 'profile' src='res/bg.png' alt='Cannot find picture' width='35' height='35'></div>\n";
    	     print "<div class='col-md-3 post-name'><a href='#'> $name </a></div>";
    	     print "<div class='col-md-5 post'></div>";
-   	     print "<div class='col-md-2'>";
-		 print "<a href=./postEdit.php?id=$item_id>Edit</a>";
-         print "</div>";
+		if($poster_id == $_SESSION['uid']) {
+			print "<div class='col-md-2'>";
+			print "<a href=./postEdit.php?id=$item_id>Edit</a>";
+			print "</div>";
+		}
    	     print "</div>";
    	     
    	     print "<div class = 'row post'>";
