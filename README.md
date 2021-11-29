@@ -15,14 +15,14 @@ The database server is part of our school server, so the project is yet to be av
 We utilize Github's hosting ability to cooperate better for our project
 
 ## Current TODO
-We keep a list of TODOs to manage our project up to deadlines' demands.
-#### Week of 11/21/2021
+We keep a list of TODOs to manage our project up to deadlines' demands:
 - [ ] Integrate messaging functionality based on in-class assignment.
-- [ ] Configure the landing page to create better UX
-- [ ] Redesign landing page
-- [x] Update form with javascript listener
-- [ ] Upload pictures
-- [ ] Delete/update for posts
+- [ ] Create a menu in the landing page.
+- [ ] Add pictures upload functions.
+- [ ] Delete/update for posts.
+- [ ] Add a place for new user registration.
+- [ ] Add search function.
+- [ ] Add some introduction to the project or web app.
 - [ ] Polish visuals in general 
 
 
@@ -41,6 +41,14 @@ In this week, we have
 - linked the submit found form to the database, so users can add new items under their login.
 - linked each post with the edit options.
 - created the front-end of the user profile page.
+
+#### Week of 11/21/2021 (Thanksiving week)
+In this week, we have updated the forms with javascript listeners.
+
+#### Week of 11/28/2021
+In this week, we have
+- added the lost postings form
+- configure the link so that only people having logged in can create a post
 
 #### Comment 
 - We are running into a problem with prefilling the edit form: we want the form be prefilled with info, but it can only appear as placeholder
