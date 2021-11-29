@@ -55,11 +55,11 @@ include_once("db_connect.php");
    <div class="col-md-2 spaceCol">
    </div>
        <div class="col-md-2 column post_button">
-           <a href="./submitFound.php">I Found an Item</a>
+           <a href="./addPost.php?op=found">I Found an Item</a>
        </div>
        
        <div class="col-md-2 column post_button">
-           <a href="./submitLost.php">I lost an Item</a>
+           <a href="./addPost.php?op=lost">I lost an Item</a>
        </div>
     </div>
     
@@ -68,4 +68,3 @@ include_once("db_connect.php");
 </div>
 </body>
 </html>
-

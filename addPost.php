@@ -1,10 +1,31 @@
 <html>
 <head>
 
-<?php
-    include("bootstrap.php");
+<?php 
+session_start();
+include("bootstrap.php");
+
+$uid = $_SESSION['uid'];
+if ($uid == '') {
+    header('Location: ./login.php');
+}
+$op = $_GET['op'];
+$title = "";
+if ($op == 'lost') {
+    $title = "Lost";
+}
+else if ($op == 'found') {
+    $title = "Found";
+} 
+else {
+    header('Location: ./landing.php');
+}
+
+print "<title> $title Form </title>";
+
 ?>
-<TITLE> Found Form </TITLE>
+
+<title> Found Form </title>
 
 <style>
 .space-row{
@@ -19,8 +40,7 @@
 
 <script>
 function electronicsForm() {
-    document.getElementById("name").innerHTML = "<td>Name of the item</td>" +
-    "<td><input type='text' name='tfName' placeholder='enter text'></td>";
+    populateName();
     document.getElementById("categoryForm").innerHTML = "<tr><td>Item Type</td>" +
     "<td><input type='text' name='tfType' placeholder='enter text'/>" + 
     "<p class='fine-print'> *Example: Phone, Tablet, Laptop, etc. </p></td></tr>" + 
@@ -39,27 +59,30 @@ function clothingForm() {
 }
 
 function suppliesForm() {
-    document.getElementById("name").innerHTML = "<td>Name of the item</td>" +
-    "<td><input type='text' name='tfName' placeholder='enter text'></td>";
+    populateName();
     document.getElementById("categoryForm").innerHTML = "<tr><td>Item Type</td>" +
     "<td><input type='text' name='tfType' placeholder='enter text'/>" + 
-    "<p class='fine-print'> *Example: IDs, keys, licenses, passports, etc. </p></td></tr>" + 
+    "<p class='fine-print'> *Example: Textbook, Calculator, Notebook etc. </p></td></tr>" + 
     "<tr><td>Color</td><td><input type='text' name='tfColor' placeholder='enter text'></td></tr>";
 }
 
 function personalForm() {
     document.getElementById("name").innerHTML = "";
     document.getElementById("categoryForm").innerHTML = "<tr><td>Item Type</td>" +
+    "<td><input type='text' name='tfType' placeholder='What is the type of the personal item?'/>" + 
+    "<p class='fine-print'> *Example: IDs, keys, licenses, passports, etc. </p></td></tr>";
+}
+
+function miscForm() {
+    populateName();
+    document.getElementById("categoryForm").innerHTML = "<tr><td>Item Type</td>" +
     "<td><input type='text' name='tfType' placeholder='enter text'/>" + 
     "<p class='fine-print'> *Example: Medicine, Water Bottle, Ukulele, etc. </p></td></tr>";
 }
 
-function miscForm() {
+function populateName() {
     document.getElementById("name").innerHTML = "<td>Name of the item</td>" +
     "<td><input type='text' name='tfName' placeholder='enter text'></td>";
-    document.getElementById("categoryForm").innerHTML = "<tr><td>Item Type</td>" +
-    "<td><input type='text' name='tfType' placeholder='enter text'/>" + 
-    "<p class='fine-print'> *Example: Medicine, Water Bottle, Ukulele, etc. </p></td></tr>";
 }
 
 function clearCatForm() {
@@ -74,12 +97,10 @@ function clearCatForm() {
 
 </div>
 
-<h2 align="center">Form for Found Items</h2>
-
-<!-- when submitted, form1.php is executed to 
-     handle the form inputs and return the results to user -->
-
-<form name="foundFm" method="POST" action="addPostProcess.php">
+<?php 
+print "<h2 align='center'>Form for $title Items</h2>";
+print "<form name='foundFm' method='POST' action='addPostProcess.php?op=$op'>"; 
+?>
 
 <table align="center" border="1" cellspacing="0" cellpadding="4" 
        style="border: transparent 1px !important;">
@@ -109,15 +130,25 @@ document.getElementById('misc').addEventListener("click", miscForm);
 <tr id='name'>
 </tr>
 
-<tr>
-<td>Found Location</td>
-<td><input type="text" name="foundLoc" placeholder="Where did you find it?"/></td>
-</tr>
+<?php
+$header = "";
+$placeholder = "";
+$currLocQues = "";
+if($op == 'lost') {
+    $header = "Lost Location";
+    $placeholder = "Where did you lose it?"; 
+}
+else {
+    $header = "Found Location";
+    $placeholder = "Where did you find it?"; 
+    $currLocQues = "<tr><td>Current Location</td>" . 
+    "<td><input type='text' name='currLoc' placeholder='Where is it now?'/></td><tr>";
+}
 
-<tr>
-<td>Current Location</td>
-<td><input type="text" name="currLoc" placeholder="Where is it now?"/></td>
-</tr>
+print "<tr><td>$header</td>";
+print "<td><input type='text' name='orgLoc' placeholder=$placeholder/></td></tr>";
+print $currLocQues;
+?>
 
 <!----CATEGORY SPECIFIC SECTION---->
 
