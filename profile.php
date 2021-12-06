@@ -3,6 +3,7 @@
 <?php
 session_start();
 include_once("db_connect.php");
+include("landing_util.php");
 
 $id = $_SESSION['uid'];
 $name = '';
@@ -14,6 +15,7 @@ if($row = $res->fetch()) {
     $contact = $row['contact'];
 }
 ?>
+
 <TITLE> <?php print $name . "'s profile" ?> </TITLE>
 <!-- lnk the other stuff here later -->
 <link rel="stylesheet" href="profile.css">
@@ -32,10 +34,9 @@ if($row = $res->fetch()) {
                             <!-- Insert an image here-->
                             <div class="mt-3">
                                 <h3> <?php print $name ?> </h3>
-                                <button type="button">Home</button>
-                                <button type="button">Message</button>
-                                <button type="button">Setting </button>
-                                <button type="button">Logout </button>
+                                <button type="button"><a href='landing.php'>Home</a></button>
+                                <button type="button"><a href='landing.php'>Message</a></button>
+                                <button type="button"><a href='landing.php'>Log Out</a></button>
                             </div>
                         </div>
 
@@ -86,14 +87,7 @@ if($row = $res->fetch()) {
                 </div>
                 <div class="card mb-3 content">
                     <h1 class ="m-3"> Recent Post </h1>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <h5> Name </h5>
-                        </div>
-                        <div class="col-md-9 text-secondary">
-                            Post Description (Insert the post from this user here sorted by date )
-                        </div>
-                    </div>
+                    <?php showPersonalPost($db) ?>
                 </div>
             </div>
         </div>

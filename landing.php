@@ -9,8 +9,6 @@ include("landing_util.php");
 include_once("db_connect.php");
 ?>
 
-<!--script src="https://kit.fontawesome.com/2020037322.js" crossorigin="anonymous"></script-->
-
 <link href="landing_style.css" rel="stylesheet" type="text/css">
 
 <title>Lost and Found</title>
@@ -26,8 +24,6 @@ include_once("db_connect.php");
         
         <div class="col-md-6 search-box">
             <input id="search-txt" type="text" name="" placeholder="Type to search" />
-            <a id="search-btn" href="#"></a>
-            <i class="far fa-search"></i>
         </div>
         
         <div class="col-md-1 spaceCol">
@@ -45,8 +41,7 @@ include_once("db_connect.php");
                         "</div>";
                 print "<div class='col-md-2 name'>" . 
                         "<a href=./profile.php>" . getName($db, $name) . "</a>" .
-                        "</div>";  
-                print "<div class='col-md-1 settings'> Settings </div>";
+                        "</div>";
             }
         ?> 
     </div>
@@ -65,6 +60,19 @@ include_once("db_connect.php");
     
     <?php showFeedPost($db); ?>
    
+   <script>
+   function confirmClaim() {
+       let sign = prompt("Are you sure you want to claim this? Type Yes or No");
+
+        if (sign.toLowerCase() == "yes") {
+               //call php function
+        }
+   }
+   
+   document.getElementById('claimBtn').addEventListener("click", confirmClaim );
+   
+   
+   </script>
 </div>
 </body>
 </html>
