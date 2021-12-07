@@ -5,7 +5,7 @@ include_once("landing_util.php");
 session_start();
 
 $op = $_GET['op'];
-$id = $_SESSION['uid'];
+
 
 
 if($op == 'sendmsg'){
@@ -23,16 +23,46 @@ if($op == 'sendmsg'){
 
 }
 
-if ($op == 'claim'){
-
-  $item_id = $_GET['id'];
-  $curDate = date('Y-m-d h:i:s', time());
-  $str = "INSERT INTO claim VALUE('$id', $item_id, 0, '$curDate')";
+function addClaimedItem($db){
+	$id = $_SESSION['uid'];
+  	$item_id = $_GET['id'];
+  	$curDate = date('Y-m-d h:i:s', time());
+  	$str = "INSERT INTO claim (user_id, item_id, date_claimed) VALUE ('$id', $item_id, '$curDate')";
+  	print($str);
+  	$res = $db->query($str);
   
-  $res = $db->query($str);
-  
-  if($res != false){
-      header('Location: ./landing.php');
-  }
+  	if($res != false){
+  	
+      	print "<script>";
+      	
+      	print "alert($str);";
+      	
+      	print "</script>";
+ }
+ 
+ if($res == false){
+ 	print "ERROR W QUERY";
+ }
 }
+
+/*function deletePost($db){
+	$id = $_GET['id'];
+	$category = $_GET['cat'];
+	
+	$delStr = "DELETE FROM items WHERE id=$id;";
+	
+	$res = $db->($delStr);
+	
+	if($res != FALSE){
+	
+		$delStr2 = "DELETE FROM desc_$category WHERE item_id=$id;";
+		
+		$res2 = $db->query($delStr2);
+		
+		if($res2 != FALSE){
+			header('Location: ./landing.php');	
+		}	
+	}
+
+}*/
 ?>

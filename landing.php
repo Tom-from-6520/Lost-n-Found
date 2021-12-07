@@ -7,11 +7,24 @@ session_start();
 include("bootstrap.php");
 include("landing_util.php");
 include_once("db_connect.php");
+include("handleButtons.php");
 ?>
 
 <link href="landing_style.css" rel="stylesheet" type="text/css">
 
 <title>Lost and Found</title>
+
+<script>
+   function confirmClaim() {
+       let sign = prompt("Are you sure you want to claim this? Type Yes or No");
+
+        if (sign.toLowerCase() == "yes") {
+               document.writeln("<?php print addClaimedItem($db); ?>");
+        }
+   }
+   
+   document.getElementById('claimBtn').addEventListener("click", confirmClaim);
+   </script>
 
 </head>
 
@@ -59,20 +72,17 @@ include_once("db_connect.php");
     </div>
     
     <?php showFeedPost($db); ?>
+  
    
-   <script>
-   function confirmClaim() {
-       let sign = prompt("Are you sure you want to claim this? Type Yes or No");
-
-        if (sign.toLowerCase() == "yes") {
-               //call php function
-        }
-   }
+   <?php
    
-   document.getElementById('claimBtn').addEventListener("click", confirmClaim );
+   	$op = $_GET['op'];
+   	
+   	if($op == "delete"){
+   		deletePost($db);
+   	}
    
-   
-   </script>
+   ?>
 </div>
 </body>
 </html>

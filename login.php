@@ -65,6 +65,10 @@ include('bootstrap.php');
 <br/>
 
 </div>
+
+	<p style='text-align:center;'>This is a digital lost and found for the Gettysburg College campus community. Members of the community can post items they find and also claim items that is theirs.</p>
+
+</div> 
 </body>
 
 </html>

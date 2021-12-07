@@ -18,6 +18,8 @@ function showFeedPost($db){
     $res = $db->query($str);
     
     if($res != false && $res->rowCount() > 0){
+    	
+    	$i = 0;	
    	 while($row = $res->fetch()){
    	     $item_id = $row['id'];
    	     $poster_id = $row['poster_id']; 
@@ -30,8 +32,12 @@ function showFeedPost($db){
    	     print "<div class='col-md-3 post-name'><a href='profile.php'> $name </a></div>";
    	     print "<div class='col-md-5 post'></div>";
 		if($poster_id == $_SESSION['uid']) {
-			print "<div class='col-md-2'>";
+			print "<div class='col-md-1'>";
 			print "<a href=./postEdit.php?id=$item_id>Edit</a>";
+			print "</div>";
+			
+			print "<div class='col-md-1'>";
+			print "<a href ='./landing.php?op=delete&id=$item_id&cat=$category'>Delete</a>";
 			print "</div>";
 		}
    	     print "</div>";
@@ -44,18 +50,22 @@ function showFeedPost($db){
    	     $detail = $row_full['detail'];
    	     print "&nbsp &nbsp &nbsp &nbsp$detail<br/>\n";
    	     print "</div>";
-              
+         
+         $uid = $_SESSION['uid'];
+         $btnName = "claimBtn" . $i;
          print "<div class = 'row post'><div class='col-md-12'><br/></div></div>";
          print "<div class ='row post'><div class = 'col-md-1'></div><div class='col-md-10'>------------------------------------------------------------------------</div></div>";
          print  "<div class = 'row post'>";
          print "<div class = 'col-md-1'></div>";
-         print "<div class='col-md-2' align ='center' id='claimBtn'><a href='handleButtons.php?op=claim&id=$item_id'>Claim</a></div>";
+         print "<div class='col-md-2' align ='center' id='$btnName'><a href='landing.php?id=$item_id&uid=$uid'>Claim</a></div>";
+         print "<script>document.getElementById('$btnName').addEventListener('click', confirmClaim); </script>";
          print "<div class='col-md-1'> | </div>";
          print "<div class='col-md-2'><a href='handleButtons.php?op=sendmsg&sendid=$poster_id'>Message</a></div>";  
          print "</div>"; 
          print "<div class ='row post'><div class = 'col-md-1'></div><div class='col-md-10'>------------------------------------------------------------------------</div></div>";
    	     
    	     print "<div class = 'row'><div class='col-md-12'><br/></div></div>";
+   	     $i++;
    	 }
     }
 }

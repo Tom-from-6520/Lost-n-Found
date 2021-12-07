@@ -1,7 +1,11 @@
+body{
+    margin-top: 20px;
+    background-color: lightskyblue;
+}
+
 .header{
     margin-top:30px;
     margin-bottom:10px;
-    background-color:lavender;
 }
 
 .search-box{
@@ -9,19 +13,6 @@
     background-color:gray;
     height: 40px;
     border-radius:40px;
-}
-
-#search-btn {
-  color: orange;
-  float:right;
-  width:40px;
-  height:40px;
-  border-radius:50%;
-  background: white;
-  display:flex;
-  justify-content: center;
-  align-items:center;
- 
 }
 
 #search-txt {
@@ -33,14 +24,15 @@
   color:white;
   font-size: 16px;
   transition: 0.4s;
+  
 }
 
 .spaceCol{
-    background-color: white;
+    background-color: lightskyblue;
 }
 
 .profileCol{
-    background-color: white;
+    background-color: lightskyblue;
 }
 
 #profile{
@@ -74,5 +66,5 @@
 }
 
 .post{
-    background-color: lavender;
+    background-color: orange;
 }
