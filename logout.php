@@ -1,5 +1,5 @@
 <?php
-$_SESSION['uid'] = "";
-header('Location: ./login.php');
+session_start();
+$_SESSION['uid'] = null;
+header('Location: ./landing.php');
 ?>
-
