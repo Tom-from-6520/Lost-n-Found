@@ -1,24 +1,57 @@
 <?php
-
+session_start();
 include_once("db_connect.php");
+include_once("landing_util.php");
 
-$sender= $_GET['sender'];
-$receiver =$_GET['receiver'];
+$op = $_GET['op'];
 
-$content = $_POST['taContent'];
-$sent = date('Y-m-d h:i:s', time());
+if ($op == 'fromMain'){
+	$sender= $_GET['sender'];
+	$receiver =$_GET['receiver'];
 
-$str = "INSERT INTO message(sender, receiver, content, sent)"
+	$content = $_POST['taContent'];
+	$sent = date('Y-m-d h:i:s', time());
+
+	$str = "INSERT INTO message(sender, receiver, content, sent)"
 		."VALUE('$sender', '$receiver', '$content', '$sent');";
 		
-$res = $db->query($str);
+	$res = $db->query($str);
 
-if($res != false){
-	header('Location: ./landing.php');
+	if($res != false){
+		$name = getName($db, $receiver);
+		print "<p>Message sent to $name!</p> \n";
+		print "<a href='landing.php'>Go to home </a> \n";
+    		print "</br>";
+    		print "<a href='profile.php'>Go to profile </a> \n";
+	}
+	else{
+
+		print "ERROR WITH QUERY";
+	}
 }
-else{
 
-	print "ERROR WITH QUESRY";
+else if($op == 'sendmsg') {
+	$sender = $_SESSION['uid'];
+  	$receiver = $_POST['ddlreceiver'];
+  	$content = $_POST['taContent'];
+  	$sent = date('Y-m-d h:i:s', time());
+	
+	$str = "INSERT INTO message(sender, receiver, sent, content)"
+		."VALUE('$sender', '$receiver', '$sent', '$content');";
+		
+	$res= $db->query($str);
+	
+	if($res == FALSE){
+		print "<p>Error sending message</p>\n";
+	}
+	
+	else{
+		$name = getName($db, $receiver);
+		print "<p>Message sent to $name !</p>\n";
+    		print "<a href='landing.php'>Go to home </a> \n";
+    		print "</br>";
+    		print "<a href='profile.php'>Go to profile </a> \n";
+	}
 }		
 		
 ?>

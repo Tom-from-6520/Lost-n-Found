@@ -16,14 +16,13 @@ include("handleButtons.php");
 
 <script>
    function confirmClaim() {
-       let sign = prompt("Are you sure you want to claim this? Type Yes or No");
+       let sign = confirm("Are you sure you want to claim this?");
 
-        if (sign.toLowerCase() == "yes") {
-               document.writeln("<?php print addClaimedItem($db); ?>");
+        if (sign == true) {
+               document.writeln("<?php print addClaimedItem($db, $_SESSION['uid']); ?>");
         }
    }
    
-   document.getElementById('claimBtn').addEventListener("click", confirmClaim);
    </script>
 
 </head>
@@ -35,7 +34,7 @@ include("handleButtons.php");
             <img src="res/logo.png" alt="Cannot find logo" width="75" height="75">
         </div>
         
-        <div class="col-md-6 search-box">
+        <div class="col-md-5 search-box">
             <input id="search-txt" type="text" name="" placeholder="Type to search" />
         </div>
         
@@ -55,6 +54,9 @@ include("handleButtons.php");
                 print "<div class='col-md-2 name'>" . 
                         "<a href=./profile.php>" . getName($db, $name) . "</a>" .
                         "</div>";
+                 print "<div class='col-md-2 name'>" . 
+                        "<a href=./logout.php>" . "Log Out" . "</a>" .
+                        "</div>";        
             }
         ?> 
     </div>

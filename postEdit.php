@@ -8,10 +8,12 @@ include("bootstrap.php");
 include("landing_util.php");
 include_once("db_connect.php");
 ?>
+
 <h3> Edit your post </h3>
 </head>
 
 <body>
+
 <?php
 $item_id = $_GET['id'];
  $str = "SELECT * FROM items WHERE id=$item_id;";

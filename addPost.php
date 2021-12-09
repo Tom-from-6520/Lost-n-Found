@@ -44,8 +44,8 @@ function electronicsForm() {
     document.getElementById("categoryForm").innerHTML = "<tr><td>Item Type</td>" +
     "<td><input type='text' name='tfType' placeholder='enter text'/>" + 
     "<p class='fine-print'> *Example: Phone, Tablet, Laptop, etc. </p></td></tr>" + 
-    "<tr><td>Brand</td><td><input type='text' name='tfBrand' placeholder='enter text'></td></tr>" +
-    "<tr><td>Color</td><td><input type='text' name='tfColor' placeholder='enter text'></td></tr>";
+    "<tr><td>Brand</td><td><input type='text' name='tfBrand' placeholder='enter text' required></td></tr>" +
+    "<tr><td>Color</td><td><input type='text' name='tfColor' placeholder='enter text' required></td></tr>";
 }
 
 function clothingForm() {
@@ -53,9 +53,9 @@ function clothingForm() {
     document.getElementById("categoryForm").innerHTML = "<tr><td>Item Type</td>" +
     "<td><input type='text' name='tfType' placeholder='enter text'/>" + 
     "<p class='fine-print'> *Example: T-shirt, Sweater, Jeans, etc. </p></td></tr>" + 
-    "<tr><td>Brand</td><td><input type='text' name='tfBrand' placeholder='enter text'></td></tr>" +
-    "<tr><td>Color</td><td><input type='text' name='tfColor' placeholder='enter text'></td></tr>" +
-    "<tr><td>Clothing size</td><td><input type='text' name='tfSize' placeholder='enter text'></td></tr>";
+    "<tr><td>Brand</td><td><input type='text' name='tfBrand' placeholder='enter text' required></td></tr>" +
+    "<tr><td>Color</td><td><input type='text' name='tfColor' placeholder='enter text' required></td></tr>" +
+    "<tr><td>Clothing size</td><td><input type='text' name='tfSize' placeholder='enter text' required></td></tr>";
 }
 
 function suppliesForm() {
@@ -63,13 +63,13 @@ function suppliesForm() {
     document.getElementById("categoryForm").innerHTML = "<tr><td>Item Type</td>" +
     "<td><input type='text' name='tfType' placeholder='enter text'/>" + 
     "<p class='fine-print'> *Example: Textbook, Calculator, Notebook etc. </p></td></tr>" + 
-    "<tr><td>Color</td><td><input type='text' name='tfColor' placeholder='enter text'></td></tr>";
+    "<tr><td>Color</td><td><input type='text' name='tfColor' placeholder='enter text' required></td></tr>";
 }
 
 function personalForm() {
     document.getElementById("name").innerHTML = "";
     document.getElementById("categoryForm").innerHTML = "<tr><td>Item Type</td>" +
-    "<td><input type='text' name='tfType' placeholder='What is the type of the personal item?'/>" + 
+    "<td><input type='text' name='tfType' placeholder='What is the type of the personal item?' required/>" + 
     "<p class='fine-print'> *Example: IDs, keys, licenses, passports, etc. </p></td></tr>";
 }
 
@@ -82,7 +82,7 @@ function miscForm() {
 
 function populateName() {
     document.getElementById("name").innerHTML = "<td>Name of the item</td>" +
-    "<td><input type='text' name='tfName' placeholder='enter text'></td>";
+    "<td><input type='text' name='tfName' placeholder='enter text' required></td>";
 }
 
 function clearCatForm() {
@@ -99,7 +99,7 @@ function clearCatForm() {
 
 <?php 
 print "<h2 align='center'>Form for $title Items</h2>";
-print "<form name='foundFm' method='POST' action='addPostProcess.php?op=$op'>"; 
+print "<form name='foundFm' method='POST' action='addPost_process.php?op=$op'>"; 
 ?>
 
 <table align="center" border="1" cellspacing="0" cellpadding="4" 
@@ -109,12 +109,12 @@ print "<form name='foundFm' method='POST' action='addPostProcess.php?op=$op'>";
 <tr>
 <td>Category</td>
 <td>
-<input type="radio" name="rbCat" value='electronics' id='electronics'>Electronics<br/>
-<input type="radio" name="rbCat" value='clothing' id='clothing'>Clothing<br/>
-<input type="radio" name="rbCat" value='school_supp' id='school_supp'>School Supplies<br/>
-<input type="radio" name="rbCat" value='personal' id='personal'>Personal<br/>
+<input type="radio" name="rbCat" value='electronics' id='electronics' required>Electronics<br/>
+<input type="radio" name="rbCat" value='clothing' id='clothing' required>Clothing<br/>
+<input type="radio" name="rbCat" value='school_supp' id='school_supp' required>School Supplies<br/>
+<input type="radio" name="rbCat" value='personal' id='personal' required>Personal<br/>
 <p class="fine-print"> *Only choose Personal for ids, keys, licenses and passports. </p>
-<input type="radio" name="rbCat" value='misc' id='misc'>Miscellaneous
+<input type="radio" name="rbCat" value='misc' id='misc' required>Miscellaneous
 </td>
 </tr>
 
@@ -142,11 +142,11 @@ else {
     $header = "Found Location";
     $placeholder = "Where did you find it?"; 
     $currLocQues = "<tr><td>Current Location</td>" . 
-    "<td><input type='text' name='currLoc' placeholder='Where is it now?'/></td><tr>";
+    "<td><input type='text' name='currLoc' placeholder='Where is it now?' required/></td><tr>";
 }
 
 print "<tr><td>$header</td>";
-print "<td><input type='text' name='orgLoc' placeholder=$placeholder/></td></tr>";
+print "<td><input type='text' name='orgLoc' placeholder=$placeholder/ required></td></tr>";
 print $currLocQues;
 ?>
 
@@ -161,7 +161,7 @@ print $currLocQues;
        style="border: transparent 1px !important;">
 <tr>
 <td>Description of the item</td>
-<td><textarea name="taDetail" value="" rows="5" cols="60"></textarea></td>
+<td><textarea name="taDetail" value="" rows="5" cols="60" required></textarea></td>
 </tr>
 
 <tr>
