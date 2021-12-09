@@ -14,7 +14,7 @@ function getName($db, $user_id) {
 
 function showFeedPost($db){
     
-    $str = "SELECT id, category, poster_id FROM items ORDER BY org_date DESC;\n";
+    $str = "SELECT id, category, poster_id FROM items WHERE id NOT IN (SELECT item_id FROM claim) ORDER BY org_date DESC;\n";
     $res = $db->query($str);
     
     if($res != false && $res->rowCount() > 0){
