@@ -14,17 +14,12 @@ The database server is part of our school server, so the project is yet to be av
 
 We utilize Github's hosting ability to cooperate better for our project
 
-## Current TODO
+## Future TODO
 We keep a list of TODOs to manage our project up to deadlines' demands:
-- [ ] Integrate messaging functionality based on in-class assignment.
-- [ ] Create a menu in the landing page.
 - [ ] Add pictures upload functions.
-- [ ] Delete/update for posts.
 - [ ] Add a place for new user registration.
-- [ ] Add search function.
 - [ ] Add some introduction to the project or web app.
 - [ ] Polish visuals in general 
-
 
 ## Progress log
 #### Week of 10/31/2021
@@ -50,5 +45,9 @@ In this week, we have
 - added the lost postings form
 - configure the link so that only people having logged in can create a post
 
-#### Comment 
-- We are running into a problem with prefilling the edit form: we want the form be prefilled with info, but it can only appear as placeholder
+#### Week of 12/05/2021
+In this week, we have
+- added claim functionality for each post
+- edit functionality was refined heavily
+- search functionality
+- messaging other users was also added.
