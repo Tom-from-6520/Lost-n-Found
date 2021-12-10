@@ -71,6 +71,29 @@ function searchSingleCategory($db, $status, $category, $terms) {
     }
 }
 
+function showPersonalPost($db) {
+    $uid = $_SESSION['uid'];
+    $str = "SELECT id, category, poster_id FROM items WHERE id NOT IN (SELECT item_id FROM claim) AND poster_id='$uid' ORDER BY org_date DESC;\n";
+    $res = $db->query($str);
+    
+    if($res != false && $res->rowCount() > 0){
+    	$i = 0;	
+   	 while($row = $res->fetch()){
+   	     $item_id = $row['id'];
+   	     $poster_id = $row['poster_id']; 
+   	     $category = $row['category'];
+   	     $name = getName($db, $poster_id);
+   	     
+   	     $str = "SELECT * FROM (SELECT * FROM items WHERE id=$item_id) AS I JOIN desc_$category ON id=item_id;\n";
+   	     $res_row = $db->query($str);
+   	     $row_full = $res_row->fetch();
+   	     $detail = $row_full['detail'];
+   	     
+   	     writePost($name, $poster_id, $item_id, $category, $detail, $i);
+  	  }
+	}
+}
+
 
 function writePost($name, $poster_id, $item_id, $category, $detail, $i) {
 
@@ -81,7 +104,7 @@ print "<div class='col-md-3 post-name'><a href='profile.php'> $name </a></div>\n
 print "<div class='col-md-5 post'></div>\n";
 if($poster_id == $_SESSION['uid']) {
 	print "<div class='col-md-1'>";
-	print "<a href=./postEdit.php?id=$item_id>Edit</a>\n";
+	print "<a href=./editPost.php?id=$item_id>Edit</a>\n";
 	print "</div>";
 	
 	print "<div class='col-md-1'>";
@@ -121,5 +144,4 @@ else{
  }
  print "<div class = 'row'><div class='col-md-12'><br/></div></div>\n";
 }
-
 ?>
