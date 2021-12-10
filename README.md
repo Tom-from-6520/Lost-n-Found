@@ -15,7 +15,7 @@ The database server is part of our school server, so the project is yet to be av
 We utilize Github's hosting ability to cooperate better for our project
 
 ## Future TODO
-We keep a list of TODOs to manage our project up to deadlines' demands:
+We keep a list of TODOs that can be done in the future to make the project more user-friendly. 
 - [ ] Add pictures upload functions.
 - [ ] Add a place for new user registration.
 - [ ] Add some introduction to the project or web app.
