@@ -11,11 +11,20 @@ if ($uid == '') {
 }
 $op = $_GET['op'];
 $title = "";
+$header = "";
+$placeholder = "";
+$currLocQues = "";
 if ($op == 'lost') {
     $title = "Lost";
+    $header = "Lost Location";
+    $placeholder = "Where did you lose it?"; 
 }
 else if ($op == 'found') {
     $title = "Found";
+    $header = "Found Location";
+    $placeholder = "Where did you find it?"; 
+    $currLocQues = "<tr><td>Current Location</td>" . 
+    "<td><input type='text' name='currLoc' placeholder='Where is it now?' required/></td><tr>";
 } 
 else {
     header('Location: ./landing.php');
@@ -25,7 +34,6 @@ print "<title> $title Form </title>";
 
 ?>
 
-<title> Found Form </title>
 
 <style>
 .space-row{
@@ -39,43 +47,74 @@ print "<title> $title Form </title>";
 </style>
 
 <script>
+
+function changeForm() {
+   var cat = document.getElementById("ddlCat").value;
+   switch(cat) {
+       case "electronics":
+           electronicsForm();
+           break;
+       case "clothing":
+           clothingForm();
+           break;
+       case "school_supp":
+           suppliesForm();
+           break;
+       case "personal":
+           personalForm();
+           break;
+       case "misc":
+           miscForm();
+           break;
+   } 
+}
+
 function electronicsForm() {
     populateName();
-    document.getElementById("categoryForm").innerHTML = "<tr><td>Item Type</td>" +
+    populateBrand();
+    populateColor();
+    document.getElementById("item_type").innerHTML = "<td>Item Type</td>" +
     "<td><input type='text' name='tfType' placeholder='enter text'/>" + 
-    "<p class='fine-print'> *Example: Phone, Tablet, Laptop, etc. </p></td></tr>" + 
-    "<tr><td>Brand</td><td><input type='text' name='tfBrand' placeholder='enter text' required></td></tr>" +
-    "<tr><td>Color</td><td><input type='text' name='tfColor' placeholder='enter text' required></td></tr>";
+    "<p class='fine-print'> *Example: Phone, Tablet, Laptop, etc. </p></td>"; 
+    document.getElementById("clothing_size").innerHTML = "";
 }
 
 function clothingForm() {
+    populateBrand();
+    populateColor();
     document.getElementById("name").innerHTML = "";
-    document.getElementById("categoryForm").innerHTML = "<tr><td>Item Type</td>" +
+    document.getElementById("item_type").innerHTML = "<td>Item Type</td>" +
     "<td><input type='text' name='tfType' placeholder='enter text'/>" + 
-    "<p class='fine-print'> *Example: T-shirt, Sweater, Jeans, etc. </p></td></tr>" + 
-    "<tr><td>Brand</td><td><input type='text' name='tfBrand' placeholder='enter text' required></td></tr>" +
-    "<tr><td>Color</td><td><input type='text' name='tfColor' placeholder='enter text' required></td></tr>" +
-    "<tr><td>Clothing size</td><td><input type='text' name='tfSize' placeholder='enter text' required></td></tr>";
+    "<p class='fine-print'> *Example: T-shirt, Sweater, Jeans, etc. </p></td>";
+    document.getElementById("clothing_size").innerHTML = "<td>Clothing size</td><td><input type='text' name='tfSize' placeholder='enter text' required></td>";
 }
 
 function suppliesForm() {
     populateName();
-    document.getElementById("categoryForm").innerHTML = "<tr><td>Item Type</td>" +
+    populateColor(); 
+    document.getElementById("item_type").innerHTML = "<td>Item Type</td>" +
     "<td><input type='text' name='tfType' placeholder='enter text'/>" + 
-    "<p class='fine-print'> *Example: Textbook, Calculator, Notebook etc. </p></td></tr>" + 
-    "<tr><td>Color</td><td><input type='text' name='tfColor' placeholder='enter text' required></td></tr>";
+    "<p class='fine-print'> *Example: Textbook, Calculator, Notebook etc. </p></td>";
+    document.getElementById("brand").innerHTML = "";
+    document.getElementById("clothing_size").innerHTML = "";
 }
 
 function personalForm() {
     document.getElementById("name").innerHTML = "";
-    document.getElementById("categoryForm").innerHTML = "<tr><td>Item Type</td>" +
+    document.getElementById("brand").innerHTML = "";
+    document.getElementById("clothing_size").innerHTML = "";
+    document.getElementById("color").innerHTML = "";
+    document.getElementById("item_type").innerHTML = "<tr><td>Item Type</td>" +
     "<td><input type='text' name='tfType' placeholder='What is the type of the personal item?' required/>" + 
     "<p class='fine-print'> *Example: IDs, keys, licenses, passports, etc. </p></td></tr>";
 }
 
 function miscForm() {
     populateName();
-    document.getElementById("categoryForm").innerHTML = "<tr><td>Item Type</td>" +
+    document.getElementById("brand").innerHTML = "";
+    document.getElementById("clothing_size").innerHTML = "";
+    document.getElementById("color").innerHTML = "";
+    document.getElementById("item_type").innerHTML = "<tr><td>Item Type</td>" +
     "<td><input type='text' name='tfType' placeholder='enter text'/>" + 
     "<p class='fine-print'> *Example: Medicine, Water Bottle, Ukulele, etc. </p></td></tr>";
 }
@@ -85,22 +124,33 @@ function populateName() {
     "<td><input type='text' name='tfName' placeholder='enter text' required></td>";
 }
 
-function clearCatForm() {
-    document.getElementById("categoryForm").innerHTML = "";
+
+function populateBrand() {
+    document.getElementById("brand").innerHTML = "<td>Brand</td><td><input type='text' name='tfBrand' placeholder='enter text' required></td>";
 }
+
+
+function populateColor() {
+    document.getElementById("color").innerHTML = "<td>Color</td><td><input type='text' name='tfColor' placeholder='enter text' required></td>";
+}
+
 </script>
 
 </head>
 <body bgColor="#FFFFFF">
+<div class="space-row"></div>
 
-<div class="space-row">
-
+<div class='row'>
+<div class='col-md-8'>
+<h2 align='center'><?php echo $title ?> Item</h2>
 </div>
+<div class='col-md-4'>
+<a href='./landing.php'>Cancel</a>
+</div>
+</div> 
 
-<?php 
-print "<h2 align='center'>Form for $title Items</h2>";
-print "<form name='foundFm' method='POST' action='addPost_process.php?op=$op'>"; 
-?>
+<form name='foundFm' method='POST' action='addPost_process.php?op=<?php print $op?>'>
+
 
 <table align="center" border="1" cellspacing="0" cellpadding="4" 
        style="border: transparent 1px !important;">
@@ -109,59 +159,41 @@ print "<form name='foundFm' method='POST' action='addPost_process.php?op=$op'>";
 <tr>
 <td>Category</td>
 <td>
-<input type="radio" name="rbCat" value='electronics' id='electronics' required>Electronics<br/>
-<input type="radio" name="rbCat" value='clothing' id='clothing' required>Clothing<br/>
-<input type="radio" name="rbCat" value='school_supp' id='school_supp' required>School Supplies<br/>
-<input type="radio" name="rbCat" value='personal' id='personal' required>Personal<br/>
-<p class="fine-print"> *Only choose Personal for ids, keys, licenses and passports. </p>
-<input type="radio" name="rbCat" value='misc' id='misc' required>Miscellaneous
+<select name='ddlCat' id='ddlCat' onchange="changeForm()" required>
+<option value='electronics'>Electronics</option>
+<option value='clothing'>Clothing</option>
+<option value='school_supp'>School Supplies</option>
+<option value='personal'>Personal</option>
+<option value='misc'>Miscellaneous</option>
+</select>
 </td>
 </tr>
-
-<script>
-document.getElementById('electronics').addEventListener("click", electronicsForm);
-document.getElementById('clothing').addEventListener("click", clothingForm);
-document.getElementById('school_supp').addEventListener("click", suppliesForm);
-document.getElementById('personal').addEventListener("click", personalForm);
-document.getElementById('misc').addEventListener("click", miscForm);
-</script>
 
 <!-- row 1: Name of item -->
 <tr id='name'>
 </tr>
 
-<?php
-$header = "";
-$placeholder = "";
-$currLocQues = "";
-if($op == 'lost') {
-    $header = "Lost Location";
-    $placeholder = "Where did you lose it?"; 
-}
-else {
-    $header = "Found Location";
-    $placeholder = "Where did you find it?"; 
-    $currLocQues = "<tr><td>Current Location</td>" . 
-    "<td><input type='text' name='currLoc' placeholder='Where is it now?' required/></td><tr>";
-}
+<tr id='item_type'>
+</tr>
 
+<tr id='brand'>
+</tr>
+
+<tr id='color'>
+</tr>
+
+<tr id='clothing_size'>
+</tr>
+
+<?php
 print "<tr><td>$header</td>";
 print "<td><input type='text' name='orgLoc' placeholder=$placeholder/ required></td></tr>";
 print $currLocQues;
 ?>
 
-<!----CATEGORY SPECIFIC SECTION---->
-
-<table align="center" border="1" cellspacing="0" cellpadding="4" 
-       style="border: transparent 1px !important;" id="categoryForm"></table>
-
-
-<!----DESCRIPTION SECTION---->
-<table align="center" border="1" cellspacing="0" cellpadding="4" 
-       style="border: transparent 1px !important;">
 <tr>
 <td>Description of the item</td>
-<td><textarea name="taDetail" value="" rows="5" cols="60" required></textarea></td>
+<td><textarea name="taDetail" placeholder="enter your description" rows="5" cols="60" required></textarea></td>
 </tr>
 
 <tr>
@@ -183,7 +215,7 @@ print $currLocQues;
 <input type="reset" value="Clear Form" id="clear"/>
 </div>
 <script>
-document.getElementById("clear").addEventListener("click", clearCatForm);
+electronicsForm();
 </script>
 </div>
 </form>

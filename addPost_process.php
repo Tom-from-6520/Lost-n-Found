@@ -3,8 +3,8 @@ session_start();
 include_once('db_connect.php');
 
 $name = $_POST['tfName']; 
-$category = $_POST['rbCat']; 
-$org_loc = $_POST['foundLoc'];
+$category = $_POST['ddlCat']; 
+$org_loc = $_POST['orgLoc'];
 $curr_loc = $_POST['currLoc'];
 
 $item_type = $_POST['tfType'];
@@ -18,17 +18,17 @@ $poster_id = $_SESSION['uid'];
 
 $op = $_GET['op'];
 $str = "";
-
 if ($op == 'found') {
-    $str = "INSERT INTO items(status, category, org_loc, curr_loc, poster_id, org_date)"
-	."VALUE('F', '$category', '$org_loc', '$cur_loc', '$poster_id', '$date');";
+$str = "INSERT INTO items(status, category, org_loc, curr_loc, poster_id, org_date) " .
+	"VALUE('F', '$category', '$org_loc', '$curr_loc', '$poster_id', '$date');";
+print_r($str);
 }
-else if ($op == 'lost'){
-    $str = "INSERT INTO items(status, category, org_loc, poster_id, org_date)"
-	."VALUE('L', '$category', '$org_loc', '$poster_id', '$date');";
+elseif ($op == 'lost'){
+    $str = "INSERT INTO items(status, category, org_loc, poster_id, org_date) " .
+	"VALUE('L', '$category', '$org_loc', '$poster_id', '$date');";
 }
-
-if($db->query($str) == FALSE){
+$res = $db->query($str);
+if($res == false){
     print "Error adding item";
 } 
 
