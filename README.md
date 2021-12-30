@@ -4,22 +4,20 @@
 This project is a group assignment for CS360: Database in Gettysburg College. 
 We hope that our idea will be useful for the community.
 
-## Project description (to be updated)
+## Project stack
 * Server scripting: PHP
 * Database: MySQL
 * Front-end: Bootstrap alongside with simple HTML and CSS
+* Server: Apache Server on Linux
 
-## Setup
-The database server is part of our school server, so the project is yet to be available for the public. 
-
-We utilize Github's hosting ability to cooperate better for our project
+## Final product
+You can look at the final product of this project at http://cs.gettysburg.edu/~doandu01/cs360/proj/landing.php
 
 ## Future TODO
 We keep a list of TODOs that can be done in the future to make the project more user-friendly. 
 - [ ] Add pictures upload functions.
 - [ ] Add a place for new user registration.
-- [ ] Add some introduction to the project or web app.
-- [ ] Polish visuals in general 
+- [ ] Polish visuals in general. 
 
 ## Progress log
 #### Week of 10/31/2021
