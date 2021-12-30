@@ -4,27 +4,20 @@
 This project is a group assignment for CS360: Database in Gettysburg College. 
 We hope that our idea will be useful for the community.
 
-## Project description (to be updated)
+## Project stack
 * Server scripting: PHP
 * Database: MySQL
 * Front-end: Bootstrap alongside with simple HTML and CSS
+* Server: Apache Server on Linux
 
-## Setup
-The database server is part of our school server, so the project is yet to be available for the public. 
+## Final product
+You can look at the final product of this project at http://cs.gettysburg.edu/~doandu01/cs360/proj/landing.php
 
-We utilize Github's hosting ability to cooperate better for our project
-
-## Current TODO
-We keep a list of TODOs to manage our project up to deadlines' demands:
-- [ ] Integrate messaging functionality based on in-class assignment.
-- [ ] Create a menu in the landing page.
+## Future TODO
+We keep a list of TODOs that can be done in the future to make the project more user-friendly. 
 - [ ] Add pictures upload functions.
-- [ ] Delete/update for posts.
 - [ ] Add a place for new user registration.
-- [ ] Add search function.
-- [ ] Add some introduction to the project or web app.
-- [ ] Polish visuals in general 
-
+- [ ] Polish visuals in general. 
 
 ## Progress log
 #### Week of 10/31/2021
@@ -50,5 +43,9 @@ In this week, we have
 - added the lost postings form
 - configure the link so that only people having logged in can create a post
 
-#### Comment 
-- We are running into a problem with prefilling the edit form: we want the form be prefilled with info, but it can only appear as placeholder
+#### Week of 12/05/2021
+In this week, we have
+- added claim functionality for each post
+- edit functionality was refined heavily
+- search functionality
+- messaging other users was also added.
